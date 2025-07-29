@@ -7,12 +7,13 @@
 #include <sstream>
 #include <iomanip>
 
-enum Levels {DEBUG, INFO, WARNING, ERROR, FATAL};
-
 class Logger{
 
 public:
-    Logger(const std::string &path, Levels level);
+
+    enum Levels {DEBUG, INFO, WARNING, ERROR, FATAL};
+
+    Logger(const std::string &path, Levels level = Levels::INFO);
     ~Logger();
 
     void debug(const std::string &message);
@@ -21,10 +22,12 @@ public:
     void error(const std::string &message);
     void fatal(const std::string &message);
 
+    void set_level(Levels level);
+
 private:
 
     std::string now();
-
+    void write_log(const std::string &message);
     Levels _level;
     std::fstream log_file;
 };
