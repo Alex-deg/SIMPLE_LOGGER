@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(simple_logger)
 
 set(SOURCES
-    main.cpp
+    Testing_app/main.cpp
     liblogger/Logger.cpp
 )
 

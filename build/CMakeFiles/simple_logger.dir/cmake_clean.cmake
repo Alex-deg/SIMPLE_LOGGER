@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o"
+  "CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o.d"
   "CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.o"
   "CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.o.d"
-  "CMakeFiles/simple_logger.dir/main.cpp.o"
-  "CMakeFiles/simple_logger.dir/main.cpp.o.d"
   "simple_logger"
   "simple_logger.pdb"
 )

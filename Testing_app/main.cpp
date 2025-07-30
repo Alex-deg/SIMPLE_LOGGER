@@ -2,21 +2,23 @@
 #include <memory>
 #include "../liblogger/Logger.h"
 
-Logger::Levels parseStringToLoggerLevel(const std::string &data){
+using namespace log;
+
+Levels parseStringToLoggerLevel(const std::string &data){
     std::string current = "";
     for(auto &x : data){
         current += tolower(x);
     }
     if(current=="debug")
-        return Logger::DEBUG;
+        return DEBUG;
     if(current=="info")
-        return Logger::INFO;
+        return INFO;
     if(current=="warning")
-        return Logger::WARNING;
+        return WARNING;
     if(current=="error")
-        return Logger::ERROR;
+        return ERROR;
     if(current=="fatal")
-        return Logger::FATAL;
+        return FATAL;
     
     throw std::invalid_argument("Неверно указан уровень логирования");
     
@@ -25,8 +27,8 @@ Logger::Levels parseStringToLoggerLevel(const std::string &data){
 int main(int argc, char* argv[]) {
 
     std::string msg;
-    Logger::Levels level;
-    std::shared_ptr<Logger> log;
+    Levels level;
+    std::shared_ptr<FileLogger> _log;
     switch (argc)
     {
     case 1:
@@ -34,14 +36,18 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;    
     case 2:
         msg = argv[1];
-        log = std::make_shared<Logger>(msg);
+        _log = std::make_shared<FileLogger>(msg);
         break;
     case 3:
         msg = argv[1];
         level = parseStringToLoggerLevel(argv[2]);
-        log = std::make_shared<Logger>(msg, level);
+        _log = std::make_shared<FileLogger>(msg, level);
         break;
     }
+
+    _log->set_level(Levels::DEBUG);
+    _log->debug("dsijfdsf");
+    _log->error("sosal");
 
 
 }

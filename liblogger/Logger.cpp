@@ -1,20 +1,11 @@
 #include "Logger.h"
 
-Logger::Logger(const std::string &path, Levels level) : _level(level){
+using namespace log;
 
-    log_file.open(path, std::ios::app);
-    if(!log_file.is_open()){
-        std::cout << "Файл не открыт" << std::endl;
-        throw std::invalid_argument("File doesn't exist");
-    }
+Logger::Logger(Levels level) : _level(level) {}
 
-}
-
-Logger::~Logger(){
-    log_file.close();
-}
-
-void Logger::debug(const std::string &message){
+void Logger::debug(const std::string &message)
+{
     if(_level <= Levels::DEBUG)
         write_log(now() + " [ debug ] " + message);
 }
@@ -42,7 +33,8 @@ void Logger::set_level(Levels level){
     _level = level;
 }
 
-std::string Logger::now() {
+std::string Logger::now()
+{
     auto now = std::chrono::system_clock::now();
     auto now_time_t = std::chrono::system_clock::to_time_t(now);
     auto now_tm = *std::localtime(&now_time_t); 
@@ -52,5 +44,9 @@ std::string Logger::now() {
 }
 
 void Logger::write_log(const std::string &message){
-    log_file << message + '\n';
+    std::cout << message << std::endl;
+}
+
+FileLogger::FileLogger(const std::string &path, Levels level) : Logger(level) {
+    std::cout << "Открыть файл" << std::endl;
 }

@@ -69,19 +69,19 @@ include CMakeFiles/simple_logger.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/simple_logger.dir/flags.make
 
-CMakeFiles/simple_logger.dir/main.cpp.o: CMakeFiles/simple_logger.dir/flags.make
-CMakeFiles/simple_logger.dir/main.cpp.o: /home/alex/dev/projects/VS\ Code/INFOTECS/SIMPLE_LOGGER/main.cpp
-CMakeFiles/simple_logger.dir/main.cpp.o: CMakeFiles/simple_logger.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/simple_logger.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simple_logger.dir/main.cpp.o -MF CMakeFiles/simple_logger.dir/main.cpp.o.d -o CMakeFiles/simple_logger.dir/main.cpp.o -c "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/main.cpp"
+CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o: CMakeFiles/simple_logger.dir/flags.make
+CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o: /home/alex/dev/projects/VS\ Code/INFOTECS/SIMPLE_LOGGER/Testing_app/main.cpp
+CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o: CMakeFiles/simple_logger.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o -MF CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o.d -o CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o -c "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_app/main.cpp"
 
-CMakeFiles/simple_logger.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/simple_logger.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/main.cpp" > CMakeFiles/simple_logger.dir/main.cpp.i
+CMakeFiles/simple_logger.dir/Testing_app/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/simple_logger.dir/Testing_app/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_app/main.cpp" > CMakeFiles/simple_logger.dir/Testing_app/main.cpp.i
 
-CMakeFiles/simple_logger.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simple_logger.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/main.cpp" -o CMakeFiles/simple_logger.dir/main.cpp.s
+CMakeFiles/simple_logger.dir/Testing_app/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simple_logger.dir/Testing_app/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_app/main.cpp" -o CMakeFiles/simple_logger.dir/Testing_app/main.cpp.s
 
 CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.o: CMakeFiles/simple_logger.dir/flags.make
 CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.o: /home/alex/dev/projects/VS\ Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp
@@ -99,13 +99,13 @@ CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.s: cmake_force
 
 # Object files for target simple_logger
 simple_logger_OBJECTS = \
-"CMakeFiles/simple_logger.dir/main.cpp.o" \
+"CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o" \
 "CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.o"
 
 # External object files for target simple_logger
 simple_logger_EXTERNAL_OBJECTS =
 
-simple_logger: CMakeFiles/simple_logger.dir/main.cpp.o
+simple_logger: CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o
 simple_logger: CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.o
 simple_logger: CMakeFiles/simple_logger.dir/build.make
 simple_logger: CMakeFiles/simple_logger.dir/link.txt
