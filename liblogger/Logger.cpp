@@ -1,39 +1,39 @@
 #include "Logger.h"
 
-using namespace log;
+using namespace liblog;
 
 Logger::Logger(Levels level) : _level(level) {}
 
 void Logger::debug(const std::string &message)
 {
     if(_level <= Levels::DEBUG)
-        write_log(now() + " [ debug ] " + message);
+        write_log(now() + " [" + BLUE + "DEBUG" + RESET + "] " + message);
 }
 
 void Logger::info(const std::string &message){
-    if(_level < Levels::INFO)
-        write_log(now() + " [ info ] " + message);
+    if(_level <= Levels::INFO)
+        write_log(now() + " [" + GREEN + "INFO" + RESET + "] " + message);
 }
 
 void Logger::warning(const std::string &message){
-    if(_level < Levels::WARNING)
-        write_log(now() + " [ warning ] " + message);
+    if(_level <= Levels::WARNING)
+        write_log(now() + " [" + YELLOW + "WARNING" + RESET + "] " + message);
 }
 
 void Logger::error(const std::string &message){
     if(_level <= Levels::ERROR)
-        write_log(now() + " [ error ] " + message);
+        write_log(now() + " [" + ORANGE + "ERROR" + RESET + "] " + message);
 }
 
 void Logger::fatal(const std::string &message){
-    write_log(now() + " [ fatal ] " + message);
+    write_log(now() + " [" + RED + "FATAL" + RESET + "] " + message);
 }
 
 void Logger::set_level(Levels level){
     _level = level;
 }
 
-Levels log::Logger::get_level()
+Levels Logger::get_level()
 {
     return _level;
 }
@@ -59,11 +59,11 @@ FileLogger::FileLogger(const std::string &path, Levels level) : Logger(level) {
     }
 }
 
-void log::FileLogger::write_log(const std::string &message){
+void FileLogger::write_log(const std::string &message){
     log_file << message + '\n';
 }
 
-log::SocketLogger::SocketLogger(int port, Levels level) : Logger(level), _port(port) {
+SocketLogger::SocketLogger(int port, Levels level) : Logger(level), _port(port) {
 
     client_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (client_socket == -1) {
@@ -72,13 +72,13 @@ log::SocketLogger::SocketLogger(int port, Levels level) : Logger(level), _port(p
     //set_nonblocking();
 }
 
-log::SocketLogger::~SocketLogger() {
+SocketLogger::~SocketLogger() {
     close(client_socket);
 }
 
 // Мб connect и inet_pton вынести в конструктор
 
-void log::SocketLogger::write_log(const std::string &message) {
+void SocketLogger::write_log(const std::string &message) {
 
     sockaddr_in server_address{};
     server_address.sin_family = AF_INET;
@@ -102,7 +102,7 @@ void log::SocketLogger::write_log(const std::string &message) {
 
 }
 
-int log::SocketLogger::set_nonblocking(int fd)
+int SocketLogger::set_nonblocking(int fd)
 {
     int flags = fcntl(fd, F_GETFL, 0);
     if(flags == -1) return -1;

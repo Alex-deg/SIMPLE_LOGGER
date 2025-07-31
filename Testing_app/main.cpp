@@ -1,8 +1,17 @@
 #include <iostream>
 #include <memory>
 #include "../liblogger/Logger.h"
+#include <thread>
+#include <mutex>
 
-using namespace log;
+using namespace liblog;
+
+std::mutex file_log_mutex;
+
+void cinFlush(){
+    std::cin.clear();
+    while(std::cin.get() != '\n');
+}
 
 Levels parseStringToLoggerLevel(const std::string &data){
     std::string current = "";
@@ -43,6 +52,20 @@ std::pair<std::string, Levels> parse_command_line(int argc, char* argv[]) {
     return {path, level};
 }
 
+void test_logger_writing(std::shared_ptr<FileLogger> &file_log, const std::string &msg, Levels lvl){
+    std::lock_guard<std::mutex> lock(file_log_mutex);
+    if(lvl == Levels::DEBUG)
+        file_log->debug(msg);
+    if(lvl == Levels::INFO)
+        file_log->info(msg);
+    if(lvl == Levels::WARNING)
+        file_log->warning(msg);
+    if(lvl == Levels::ERROR)
+        file_log->error(msg);
+    if(lvl == Levels::FATAL)
+        file_log->fatal(msg);
+}
+
 int main(int argc, char* argv[]) {
 
     auto settings = parse_command_line(argc, argv);
@@ -52,7 +75,7 @@ int main(int argc, char* argv[]) {
 
     char menu, menu2;
     std::string msg;
-
+    Levels level;
     do{
         system("clear");
         std::cout << "1. Сделать запись" << std::endl;
@@ -60,10 +83,11 @@ int main(int argc, char* argv[]) {
         std::cout << "3. Выход" << std::endl;
         std::cin >> menu;
         switch(menu){
-        case '1':
+        case '1': {
             system("clear");
             std::cout << "Ваше сообщение: " << std::endl;
-            std::cin >> msg;
+            cinFlush();
+            std::getline(std::cin, msg);
             std::cout << "Хотите указать уровень логирования? Y/n" << std::endl;
             std::cin >> menu2;
             if(menu2 != 'n' && menu2 != 'N'){
@@ -74,28 +98,19 @@ int main(int argc, char* argv[]) {
                 std::cout << "5. FATAL" << std::endl;
                 std::cin >> menu2;
                 switch(menu2){
-                    case '1' : file_log->debug(msg); break;
-                    case '2' : file_log->info(msg); break;
-                    case '3' : file_log->warning(msg); break;
-                    case '4' : file_log->error(msg); break;
-                    case '5' : file_log->fatal(msg); break;
+                    case '1' : level = Levels::DEBUG; break;
+                    case '2' : level = Levels::INFO; break;
+                    case '3' : level = Levels::WARNING; break;
+                    case '4' : level = Levels::ERROR; break;
+                    case '5' : level = Levels::FATAL; break;
                 }
             }
-            else{
-                auto lvl = file_log->get_level();
-                if(lvl == Levels::DEBUG)
-                    file_log->debug(msg);
-                if(lvl == Levels::INFO)
-                    file_log->info(msg);
-                if(lvl == Levels::WARNING)
-                    file_log->warning(msg);
-                if(lvl == Levels::ERROR)
-                    file_log->error(msg);
-                if(lvl == Levels::FATAL)
-                    file_log->fatal(msg);
-            }
+            else level = file_log->get_level();
+            std::thread handle_data(test_logger_writing, std::ref(file_log), std::cref(msg), level);
+            handle_data.join();
             break;
-        case '2':
+        }
+        case '2': {
             std::cout << "1. DEBUG" << std::endl;
             std::cout << "2. INFO" << std::endl;
             std::cout << "3. WARNING" << std::endl;
@@ -110,6 +125,7 @@ int main(int argc, char* argv[]) {
                 case '5' : file_log->set_level(Levels::FATAL); break;
             }
             break;
+        }
         }
     }while(menu != '3');
 
