@@ -24,30 +24,94 @@ Levels parseStringToLoggerLevel(const std::string &data){
     
 }
 
-int main(int argc, char* argv[]) {
-
-    std::string msg;
+std::pair<std::string, Levels> parse_command_line(int argc, char* argv[]) {
+    std::string path;
     Levels level;
-    std::shared_ptr<FileLogger> _log;
     switch (argc)
     {
     case 1:
-        std::cerr << "Слишком мало аргументов: должно быть минимум 2" << std::endl;
-        return EXIT_FAILURE;    
+        throw std::invalid_argument("Слишком мало аргументов: должно быть минимум 2");
+        break;
     case 2:
-        msg = argv[1];
-        _log = std::make_shared<FileLogger>(msg);
+        path = argv[1];
         break;
     case 3:
-        msg = argv[1];
+        path = argv[1];
         level = parseStringToLoggerLevel(argv[2]);
-        _log = std::make_shared<FileLogger>(msg, level);
         break;
     }
+    return {path, level};
+}
 
-    _log->set_level(Levels::DEBUG);
-    _log->debug("dsijfdsf");
-    _log->error("sosal");
+int main(int argc, char* argv[]) {
+
+    auto settings = parse_command_line(argc, argv);
+
+    std::shared_ptr<FileLogger> file_log = std::make_shared<FileLogger>(settings.first, settings.second);
+    std::shared_ptr<SocketLogger> socket_log = std::make_shared<SocketLogger>(8888, settings.second);
+
+    char menu, menu2;
+    std::string msg;
+
+    do{
+        system("clear");
+        std::cout << "1. Сделать запись" << std::endl;
+        std::cout << "2. Изменить уровень логирования по умолчанию" << std::endl;
+        std::cout << "3. Выход" << std::endl;
+        std::cin >> menu;
+        switch(menu){
+        case '1':
+            system("clear");
+            std::cout << "Ваше сообщение: " << std::endl;
+            std::cin >> msg;
+            std::cout << "Хотите указать уровень логирования? Y/n" << std::endl;
+            std::cin >> menu2;
+            if(menu2 != 'n' && menu2 != 'N'){
+                std::cout << "1. DEBUG" << std::endl;
+                std::cout << "2. INFO" << std::endl;
+                std::cout << "3. WARNING" << std::endl;
+                std::cout << "4. ERROR" << std::endl;
+                std::cout << "5. FATAL" << std::endl;
+                std::cin >> menu2;
+                switch(menu2){
+                    case '1' : file_log->debug(msg); break;
+                    case '2' : file_log->info(msg); break;
+                    case '3' : file_log->warning(msg); break;
+                    case '4' : file_log->error(msg); break;
+                    case '5' : file_log->fatal(msg); break;
+                }
+            }
+            else{
+                auto lvl = file_log->get_level();
+                if(lvl == Levels::DEBUG)
+                    file_log->debug(msg);
+                if(lvl == Levels::INFO)
+                    file_log->info(msg);
+                if(lvl == Levels::WARNING)
+                    file_log->warning(msg);
+                if(lvl == Levels::ERROR)
+                    file_log->error(msg);
+                if(lvl == Levels::FATAL)
+                    file_log->fatal(msg);
+            }
+            break;
+        case '2':
+            std::cout << "1. DEBUG" << std::endl;
+            std::cout << "2. INFO" << std::endl;
+            std::cout << "3. WARNING" << std::endl;
+            std::cout << "4. ERROR" << std::endl;
+            std::cout << "5. FATAL" << std::endl;
+            std::cin >> menu2;
+            switch(menu2){
+                case '1' : file_log->set_level(Levels::DEBUG); break;
+                case '2' : file_log->set_level(Levels::INFO); break;
+                case '3' : file_log->set_level(Levels::WARNING); break;
+                case '4' : file_log->set_level(Levels::ERROR); break;
+                case '5' : file_log->set_level(Levels::FATAL); break;
+            }
+            break;
+        }
+    }while(menu != '3');
 
 
 }

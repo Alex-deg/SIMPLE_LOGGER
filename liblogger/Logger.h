@@ -6,6 +6,11 @@
 #include <chrono>
 #include <sstream>
 #include <iomanip>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 namespace log {
 
@@ -34,16 +39,31 @@ public:
     void error(const std::string &message) override;
     void fatal(const std::string &message) override;
     void set_level(Levels level) override;
+    Levels get_level();
 protected:
-    std::string virtual now() override;
-    void virtual write_log(const std::string &message) override;
+    std::string now() override;
+    void write_log(const std::string &message) override;
     Levels _level;
 };
 
-class FileLogger : public Logger{
+class FileLogger : public Logger {
 public:
     FileLogger(const std::string &path, Levels level = Levels::INFO);
-    
+    void write_log(const std::string &message) override;
+private:
+    std::fstream log_file;
 };
+
+class SocketLogger : public Logger { // Работает локально
+public:
+    SocketLogger(int port, Levels level = Levels::INFO);
+    ~SocketLogger();
+    void write_log(const std::string &message) override;
+private:
+    int set_nonblocking(int fd);
+    int client_socket;
+    int _port;
+}; 
+
 
 }
