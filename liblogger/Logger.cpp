@@ -67,31 +67,28 @@ SocketLogger::SocketLogger(int port, Levels level) : Logger(level), _port(port) 
 
     client_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (client_socket == -1) {
-        throw std::runtime_error("Ошибка создания сокета");
+        std::cerr << "Ошибка создания сокета\n";
     }
-    //set_nonblocking();
+
+    // 2. Настройка адреса сервера (куда подключаемся)
+    sockaddr_in serverAddr{};
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(_port);  // Порт сервера
+    inet_pton(AF_INET, "127.0.0.1", &serverAddr.sin_addr);  // localhost
+
+    // 3. Подключение к серверу
+    if (connect(client_socket, (sockaddr*)&serverAddr, sizeof(serverAddr))) {
+        std::cerr << "Ошибка подключения\n";
+        close(client_socket);
+    }
+
 }
 
 SocketLogger::~SocketLogger() {
     close(client_socket);
 }
 
-// Мб connect и inet_pton вынести в конструктор
-
 void SocketLogger::write_log(const std::string &message) {
-
-    sockaddr_in server_address{};
-    server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(_port);
-    if (inet_pton(AF_INET, "127.0.0.1", &server_address.sin_addr) <= 0) {
-        close(client_socket);
-        throw std::runtime_error("Ошибка преобразования IP-адреса");
-    }
-
-    if (connect(client_socket, (struct sockaddr *)&server_address, sizeof(server_address)) == -1) {
-        close(client_socket);
-        throw std::runtime_error("Ошибка подключения");
-    }
 
     ssize_t bytes_sent = send(client_socket, message.c_str(), message.size(), 0);
     if (bytes_sent == -1) {
@@ -100,6 +97,11 @@ void SocketLogger::write_log(const std::string &message) {
         std::cout << "Отправлено " << bytes_sent << " байт" << std::endl;
     }
 
+}
+
+int liblog::SocketLogger::get_client_fd()
+{
+    return client_socket;
 }
 
 int SocketLogger::set_nonblocking(int fd)

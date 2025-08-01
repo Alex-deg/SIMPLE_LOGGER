@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_app/main.cpp" "CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o" "gcc" "CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o.d"
+  "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/main.cpp" "CMakeFiles/simple_logger.dir/Testing_socket_logger/main.cpp.o" "gcc" "CMakeFiles/simple_logger.dir/Testing_socket_logger/main.cpp.o.d"
   "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp" "CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.o" "gcc" "CMakeFiles/simple_logger.dir/liblogger/Logger.cpp.o.d"
   )
 

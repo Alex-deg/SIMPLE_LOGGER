@@ -1,0 +1,3 @@
+/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/client/build/CMakeFiles/simple_logger.dir
+/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/client/build/CMakeFiles/edit_cache.dir
+/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/client/build/CMakeFiles/rebuild_cache.dir

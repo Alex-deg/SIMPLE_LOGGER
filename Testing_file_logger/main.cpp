@@ -71,7 +71,6 @@ int main(int argc, char* argv[]) {
     auto settings = parse_command_line(argc, argv);
 
     std::shared_ptr<FileLogger> file_log = std::make_shared<FileLogger>(settings.first, settings.second);
-    std::shared_ptr<SocketLogger> socket_log = std::make_shared<SocketLogger>(8888, settings.second);
 
     char menu, menu2;
     std::string msg;

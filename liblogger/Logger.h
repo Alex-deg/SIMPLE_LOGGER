@@ -66,6 +66,7 @@ public:
     SocketLogger(int port, Levels level = Levels::INFO);
     ~SocketLogger();
     void write_log(const std::string &message) override;
+    int get_client_fd();
 private:
     int set_nonblocking(int fd);
     int client_socket;

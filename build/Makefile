@@ -129,29 +129,29 @@ simple_logger/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/build
 .PHONY : simple_logger/fast
 
-Testing_app/main.o: Testing_app/main.cpp.o
-.PHONY : Testing_app/main.o
+Testing_socket_logger/main.o: Testing_socket_logger/main.cpp.o
+.PHONY : Testing_socket_logger/main.o
 
 # target to build an object file
-Testing_app/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/Testing_app/main.cpp.o
-.PHONY : Testing_app/main.cpp.o
+Testing_socket_logger/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/Testing_socket_logger/main.cpp.o
+.PHONY : Testing_socket_logger/main.cpp.o
 
-Testing_app/main.i: Testing_app/main.cpp.i
-.PHONY : Testing_app/main.i
+Testing_socket_logger/main.i: Testing_socket_logger/main.cpp.i
+.PHONY : Testing_socket_logger/main.i
 
 # target to preprocess a source file
-Testing_app/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/Testing_app/main.cpp.i
-.PHONY : Testing_app/main.cpp.i
+Testing_socket_logger/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/Testing_socket_logger/main.cpp.i
+.PHONY : Testing_socket_logger/main.cpp.i
 
-Testing_app/main.s: Testing_app/main.cpp.s
-.PHONY : Testing_app/main.s
+Testing_socket_logger/main.s: Testing_socket_logger/main.cpp.s
+.PHONY : Testing_socket_logger/main.s
 
 # target to generate assembly for a file
-Testing_app/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/Testing_app/main.cpp.s
-.PHONY : Testing_app/main.cpp.s
+Testing_socket_logger/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/Testing_socket_logger/main.cpp.s
+.PHONY : Testing_socket_logger/main.cpp.s
 
 liblogger/Logger.o: liblogger/Logger.cpp.o
 .PHONY : liblogger/Logger.o
@@ -186,9 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... simple_logger"
-	@echo "... Testing_app/main.o"
-	@echo "... Testing_app/main.i"
-	@echo "... Testing_app/main.s"
+	@echo "... Testing_socket_logger/main.o"
+	@echo "... Testing_socket_logger/main.i"
+	@echo "... Testing_socket_logger/main.s"
 	@echo "... liblogger/Logger.o"
 	@echo "... liblogger/Logger.i"
 	@echo "... liblogger/Logger.s"
