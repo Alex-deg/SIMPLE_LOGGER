@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server"
+CMAKE_SOURCE_DIR = "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_file_logger"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/build"
+CMAKE_BINARY_DIR = "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_file_logger/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/build/CMakeFiles" "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_file_logger/build/CMakeFiles" "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_file_logger/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_file_logger/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -129,30 +129,6 @@ simple_logger/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/build
 .PHONY : simple_logger/fast
 
-home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.o: home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o
-.PHONY : home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.o
-
-# target to build an object file
-home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o
-.PHONY : home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o
-
-home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.i: home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.i
-.PHONY : home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.i
-
-# target to preprocess a source file
-home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.i
-.PHONY : home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.i
-
-home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.s: home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.s
-.PHONY : home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.s
-
-# target to generate assembly for a file
-home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.s
-.PHONY : home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.s
-
 home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.o: home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.o
 .PHONY : home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.o
 
@@ -177,53 +153,29 @@ home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.s
 .PHONY : home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.s
 
-reading_main.o: reading_main.cpp.o
-.PHONY : reading_main.o
+main.o: main.cpp.o
+.PHONY : main.o
 
 # target to build an object file
-reading_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/reading_main.cpp.o
-.PHONY : reading_main.cpp.o
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-reading_main.i: reading_main.cpp.i
-.PHONY : reading_main.i
-
-# target to preprocess a source file
-reading_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/reading_main.cpp.i
-.PHONY : reading_main.cpp.i
-
-reading_main.s: reading_main.cpp.s
-.PHONY : reading_main.s
-
-# target to generate assembly for a file
-reading_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/reading_main.cpp.s
-.PHONY : reading_main.cpp.s
-
-server.o: server.cpp.o
-.PHONY : server.o
-
-# target to build an object file
-server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/server.cpp.o
-.PHONY : server.cpp.o
-
-server.i: server.cpp.i
-.PHONY : server.i
+main.i: main.cpp.i
+.PHONY : main.i
 
 # target to preprocess a source file
-server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/server.cpp.i
-.PHONY : server.cpp.i
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-server.s: server.cpp.s
-.PHONY : server.s
+main.s: main.cpp.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/server.cpp.s
-.PHONY : server.cpp.s
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_logger.dir/build.make CMakeFiles/simple_logger.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -234,18 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... simple_logger"
-	@echo "... home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.o"
-	@echo "... home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.i"
-	@echo "... home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.s"
 	@echo "... home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.o"
 	@echo "... home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.i"
 	@echo "... home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.s"
-	@echo "... reading_main.o"
-	@echo "... reading_main.i"
-	@echo "... reading_main.s"
-	@echo "... server.o"
-	@echo "... server.i"
-	@echo "... server.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

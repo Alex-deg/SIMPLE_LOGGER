@@ -1,6 +1,14 @@
 #include "server.h"
 
 TCPServer::TCPServer(int port){
+
+    int n,t;
+    std::cout << "Введите N и T" << std::endl;
+    std::cout << "N = ";
+    std::cin >> n;
+    std::cout << "T = ";
+    std::cin >> t;
+    stat = std::make_shared<Stats>(n,t);
     this->port_ = port;
     epoll_fd_ = -1;
     server_fd_ = -1;
@@ -114,8 +122,10 @@ void TCPServer::handleClientData(int fd) {
 
     std::string message(buffer);
 
-    if(message.size() > 0)
+    if(message.size() > 0){
         std::cout << "Received message: " <<  message << std::endl;
+        stat->update_statistics(message);
+    }
 
 }
 

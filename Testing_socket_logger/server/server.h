@@ -14,6 +14,7 @@
 #include <memory>
 #include <fcntl.h>
 #include <stack>
+#include "../libstatistics/statistic.h"
 
 class TCPServer {
 public:
@@ -29,6 +30,8 @@ private:
     int epoll_fd_;
     int server_fd_;
     std::vector<struct epoll_event> events_{MAX_EVENTS};
+
+    std::shared_ptr<Stats> stat;
 
     void createSocket();
     void setupEpoll();

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/simple_logger.dir/main.cpp.o CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.o -o simple_logger 

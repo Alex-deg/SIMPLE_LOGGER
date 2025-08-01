@@ -70,6 +70,9 @@ int main(int argc, char* argv[]) {
 
     auto settings = parse_command_line(argc, argv);
 
+    system("bash ../scripts/clear_log_journal.sh");
+    std::string sosal;
+    std::cin >> sosal;
     std::shared_ptr<FileLogger> file_log = std::make_shared<FileLogger>(settings.first, settings.second);
 
     char menu, menu2;

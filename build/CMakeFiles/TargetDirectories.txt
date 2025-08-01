@@ -1,3 +1,0 @@
-/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/build/CMakeFiles/simple_logger.dir
-/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/build/CMakeFiles/edit_cache.dir
-/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/build/CMakeFiles/rebuild_cache.dir

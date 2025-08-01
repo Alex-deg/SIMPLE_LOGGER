@@ -8,10 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp" "CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o" "gcc" "CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o.d"
   "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp" "CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.o" "gcc" "CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.o.d"
-  "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/reading_main.cpp" "CMakeFiles/simple_logger.dir/reading_main.cpp.o" "gcc" "CMakeFiles/simple_logger.dir/reading_main.cpp.o.d"
-  "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/server.cpp" "CMakeFiles/simple_logger.dir/server.cpp.o" "gcc" "CMakeFiles/simple_logger.dir/server.cpp.o.d"
+  "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_file_logger/main.cpp" "CMakeFiles/simple_logger.dir/main.cpp.o" "gcc" "CMakeFiles/simple_logger.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

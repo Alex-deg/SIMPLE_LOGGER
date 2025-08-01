@@ -6,11 +6,13 @@ set(SOURCES
     reading_main.cpp
     server.cpp
     ../../liblogger/Logger.cpp
+    ../libstatistics/statistic.cpp
 )
 
 set(HEADERS
     server.h
     ../../liblogger/Logger.h
+    ../libstatistics/statistic.h
 )
 
 add_executable(simple_logger ${SOURCES} ${HEADERS})

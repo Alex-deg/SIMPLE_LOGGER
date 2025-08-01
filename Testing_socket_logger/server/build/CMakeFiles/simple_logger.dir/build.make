@@ -111,11 +111,26 @@ CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGG
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp" -o CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.s
 
+CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o: CMakeFiles/simple_logger.dir/flags.make
+CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o: /home/alex/dev/projects/VS\ Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp
+CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o: CMakeFiles/simple_logger.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o -MF CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o.d -o CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o -c "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp"
+
+CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp" > CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.i
+
+CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp" -o CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.s
+
 # Object files for target simple_logger
 simple_logger_OBJECTS = \
 "CMakeFiles/simple_logger.dir/reading_main.cpp.o" \
 "CMakeFiles/simple_logger.dir/server.cpp.o" \
-"CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.o"
+"CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.o" \
+"CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o"
 
 # External object files for target simple_logger
 simple_logger_EXTERNAL_OBJECTS =
@@ -123,9 +138,10 @@ simple_logger_EXTERNAL_OBJECTS =
 simple_logger: CMakeFiles/simple_logger.dir/reading_main.cpp.o
 simple_logger: CMakeFiles/simple_logger.dir/server.cpp.o
 simple_logger: CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/liblogger/Logger.cpp.o
+simple_logger: CMakeFiles/simple_logger.dir/home/alex/dev/projects/VS_Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/libstatistics/statistic.cpp.o
 simple_logger: CMakeFiles/simple_logger.dir/build.make
 simple_logger: CMakeFiles/simple_logger.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable simple_logger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/alex/dev/projects/VS Code/INFOTECS/SIMPLE_LOGGER/Testing_socket_logger/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable simple_logger"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/simple_logger.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

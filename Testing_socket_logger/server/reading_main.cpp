@@ -5,7 +5,6 @@ int main(int argc, char* argv[]) {
         std::cerr << "Слишком мало аргументов: должно быть 2" << std::endl;
         return EXIT_FAILURE;
     }
-
     try {
         int port = std::stoi(argv[1]);
         TCPServer server(port);
