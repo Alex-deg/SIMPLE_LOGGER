@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+// ANSI коды для форматирования цвета при выводе в консоль
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
 #define YELLOW  "\033[33m"
@@ -21,7 +22,7 @@
 
 namespace liblog {
 
-enum Levels {DEBUG, INFO, WARNING, ERROR, FATAL};       // уровни логирования
+enum Levels {DEBUG, INFO, WARNING, ERROR, FATAL};           // уровни логирования
 
 class ILogger{
 public:
@@ -33,8 +34,8 @@ public:
     void virtual set_level(Levels level)               = 0; // сеттер для текущего уровня логирования 
                                                             // (сообщения с уровнем логирования < чем текущий
                                                             // не записываются)
-    std::string virtual now()                          = 0;
-    void virtual write_log(const std::string &message) = 0;
+    std::string virtual now()                          = 0; // функция для получения текущей даты и времени
+    void virtual write_log(const std::string &message) = 0; // функция записи лога в журнал
 };
 
 class Logger : public ILogger {
@@ -46,19 +47,21 @@ public:
     void error(const std::string &message) override;
     void fatal(const std::string &message) override;
     void set_level(Levels level) override;
-    Levels get_level();
+    Levels get_level();                                     // геттер для текущего уровня логирования
 protected:
     std::string now() override;
     void write_log(const std::string &message) override;
-    Levels _level;
+    Levels _level;                                          // текущий уровень логирования
 };
+
+// Мб сделать write_log private и тогда в тестах придется поменять
 
 class FileLogger : public Logger {
 public:
     FileLogger(const std::string &path, Levels level = Levels::INFO);
     void write_log(const std::string &message) override;
 private:
-    std::fstream log_file;
+    std::fstream log_file;                                  // объект файла, который представляет собой журнал логов
 };
 
 class SocketLogger : public Logger { // Работает локально
@@ -66,11 +69,11 @@ public:
     SocketLogger(int port, Levels level = Levels::INFO);
     ~SocketLogger();
     void write_log(const std::string &message) override;
-    int get_client_fd();
+    //int get_client_fd();
 private:
-    int set_nonblocking(int fd);
-    int client_socket;
-    int _port;
+    int set_nonblocking(int fd);                            // функция для задания флагов неблокирующего сокета
+    int client_socket;                                      // файловый дескриптор сокета
+    int _port;                                              // порт на котором слушаются сообщения
 }; 
 
 

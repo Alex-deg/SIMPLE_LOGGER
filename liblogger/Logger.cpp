@@ -4,6 +4,7 @@ using namespace liblog;
 
 Logger::Logger(Levels level) : _level(level) {}
 
+// Реализация базовой логики логирования
 void Logger::debug(const std::string &message)
 {
     if(_level <= Levels::DEBUG)
@@ -49,37 +50,38 @@ std::string Logger::now()
 }
 
 void Logger::write_log(const std::string &message){
-    std::cout << message << std::endl;
+    std::cout << message << std::endl; // простой вывод в консоль
 }
 
 FileLogger::FileLogger(const std::string &path, Levels level) : Logger(level) {
-    log_file.open(path, std::ios::app);
+    log_file.open(path, std::ios::app); // попытка открыть файл
     if(!log_file.is_open()){
         throw std::invalid_argument("File doesn't exist"); 
     }
 }
 
 void FileLogger::write_log(const std::string &message){
-    log_file << message + '\n';
+    log_file << message + '\n'; // вывод лога в файла
 }
 
 SocketLogger::SocketLogger(int port, Levels level) : Logger(level), _port(port) {
 
+    // 1. Создание сокета
     client_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (client_socket == -1) {
-        std::cerr << "Ошибка создания сокета\n";
+        throw std::runtime_error("Ошибка создания сокета");
     }
 
-    // 2. Настройка адреса сервера (куда подключаемся)
+    // 2. Настройка адреса сервера
     sockaddr_in serverAddr{};
-    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_family = AF_INET;     // IPv4
     serverAddr.sin_port = htons(_port);  // Порт сервера
     inet_pton(AF_INET, "127.0.0.1", &serverAddr.sin_addr);  // localhost
 
     // 3. Подключение к серверу
     if (connect(client_socket, (sockaddr*)&serverAddr, sizeof(serverAddr))) {
-        std::cerr << "Ошибка подключения\n";
         close(client_socket);
+        throw std::runtime_error("Ошибка подключения");
     }
 
 }
@@ -88,8 +90,8 @@ SocketLogger::~SocketLogger() {
     close(client_socket);
 }
 
-void SocketLogger::write_log(const std::string &message) {
-
+void SocketLogger::write_log(const std::string &message) {  
+    // Запись в сокет
     ssize_t bytes_sent = send(client_socket, message.c_str(), message.size(), 0);
     if (bytes_sent == -1) {
         throw std::runtime_error("Ошибка отправки данных");
@@ -99,10 +101,10 @@ void SocketLogger::write_log(const std::string &message) {
 
 }
 
-int liblog::SocketLogger::get_client_fd()
-{
-    return client_socket;
-}
+// int liblog::SocketLogger::get_client_fd()
+// {
+//     return client_socket;
+// }
 
 int SocketLogger::set_nonblocking(int fd)
 {

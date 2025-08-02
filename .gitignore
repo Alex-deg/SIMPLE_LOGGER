@@ -2,3 +2,5 @@
 Testing_file_logger/build/
 Testing_socket_logger/client/build/
 Testing_socket_logger/server/build/
+Tasks.txt
+unit_tests/build/

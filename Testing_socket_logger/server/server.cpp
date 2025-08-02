@@ -25,15 +25,15 @@ void TCPServer::run() {
     std::cout << "Server listening on port " << port_ << "..." << std::endl;
     
     while (true) {
-        int nfds = epoll_wait(epoll_fd_, events_.data(), MAX_EVENTS, -1);
+        int nfds = epoll_wait(epoll_fd_, events_.data(), MAX_EVENTS, -1); // захватываем события
         if (nfds == -1) {
             throw std::runtime_error("epoll_wait failed");
         }
         for (int i = 0; i < nfds; ++i) {
             if (events_[i].data.fd == server_fd_) {
-                handleNewConnection();
+                handleNewConnection(); // обработка нового подключения
             } else {
-                handleClientData(events_[i].data.fd);
+                handleClientData(events_[i].data.fd); // обработка данных пользователя
             }
         }
     }
@@ -81,8 +81,10 @@ void TCPServer::setupEpoll() {
 }
 
 void TCPServer::handleNewConnection() {
+    // настройка адреса клиента 
     struct sockaddr_in client_addr{};
     socklen_t addrlen = sizeof(client_addr);
+    // процесс подключения
     int client_fd = accept(server_fd_, (struct sockaddr*)&client_addr, &addrlen);
     if (client_fd < 0) {
         std::cerr << "accept failed" << std::endl;
@@ -106,6 +108,7 @@ void TCPServer::handleNewConnection() {
 void TCPServer::handleClientData(int fd) {
     char buffer[BUF_SIZE] = {0};
     ssize_t valread;
+    // читаем из сокета
     valread = recv(fd, buffer, BUF_SIZE, 0);
     if (valread == -1) {
         if (errno == EAGAIN || errno == EWOULDBLOCK) {
@@ -122,9 +125,9 @@ void TCPServer::handleClientData(int fd) {
 
     std::string message(buffer);
 
-    if(message.size() > 0){
-        std::cout << "Received message: " <<  message << std::endl;
-        stat->update_statistics(message);
+    if(message.size() > 0){ // если пришло не пустое сообщение
+        std::cout << "Received message: " << message << std::endl; // вывод полученного сообщения
+        stat->update_statistics(message); // обновление статистики
     }
 
 }

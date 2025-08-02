@@ -23,7 +23,7 @@ public:
     ~TCPServer();
     
 private:
-    static const int MAX_EVENTS = 10;
+    static const int MAX_EVENTS = 10; // количество сессий одновременно
     static const int BUF_SIZE = 1024;
     
     int port_;

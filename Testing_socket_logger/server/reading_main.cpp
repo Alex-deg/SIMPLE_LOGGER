@@ -6,8 +6,8 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
     try {
-        int port = std::stoi(argv[1]);
-        TCPServer server(port);
+        int port = std::stoi(argv[1]); 
+        TCPServer server(port); // запускаем TCP сервер для прослушки сокетов, на которые приходят логи
         server.run();
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;

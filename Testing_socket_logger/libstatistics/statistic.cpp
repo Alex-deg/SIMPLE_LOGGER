@@ -7,17 +7,19 @@ Stats::Stats(int n, int t) : _n(n), _t(t) {
 
 void Stats::update_statistics(const std::string &msg)
 {
-    stat.total++;
-    stat.importance_level[parse_logger_level(msg)]++;
-    handle_time();
-    if(stat.total < 2){
+    stat.total++; // увеличение общего числа сообщений на 1
+    stat.importance_level[parse_logger_level(msg)]++; // определяем какой уровень логирования у сообщения
+                                                      // и увеличиваем количество его появлений на 1
+    handle_time(); // проверка не прошел ли час и увеличение или сброс поля statistics::in_hour
+    if(stat.total < 2){ // если первое сообщение инициализируем им
         stat.min_size = msg.size();
         stat.max_size = msg.size();
         stat.avg_size = msg.size();
     }
-    else{
+    else{ // иначе вычисляем
         stat.min_size = std::min(stat.min_size, msg.size());
         stat.max_size = std::max(stat.max_size, msg.size());
+        // вычисление средней длины сообщения без накопления общей длины всех сообщений (для избежания переполнения типов)
         stat.avg_size += ((stat.total - 1) * msg.size() - (stat.total - 1) * stat.avg_size)/((stat.total - 1) * stat.total);
     }
     if(stat.total % _n == 0){
@@ -71,11 +73,11 @@ void Stats::handle_time()
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(
         std::chrono::steady_clock::now() - last_check
     ).count();
-    if(duration >= 60*60){
-        stat.in_hour = 0;
-        last_check = std::chrono::steady_clock::now();
+    if(duration >= 60*60){                                  // если час прошел 
+        stat.in_hour = 0;                                   // сбрасываем количество сообщений за час
+        last_check = std::chrono::steady_clock::now();      // засекаем время
     }
-    else stat.in_hour++;
+    else stat.in_hour++;                                    // если час не прошел -> увеличиваем на 1
 }
 
 std::string Stats::parse_logger_level(const std::string &s)

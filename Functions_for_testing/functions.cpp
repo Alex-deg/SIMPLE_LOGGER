@@ -36,11 +36,11 @@ std::pair<std::string, Levels> parse_command_line_filelog(int argc, char* argv[]
         throw std::invalid_argument("Слишком мало аргументов: должно быть минимум 2");
         break;
     case 2:
-        path = argv[1];
+        path = argv[1];                            // получение пути к журналу
         break;
     case 3:
-        path = argv[1];
-        level = parseStringToLoggerLevel(argv[2]);
+        path = argv[1];                            // получение пути к журналу
+        level = parseStringToLoggerLevel(argv[2]); // получение уровня логирования по умолчанию
         break;
     }
     return {path, level};
@@ -55,11 +55,11 @@ std::pair<int, Levels> parse_command_line_socketlog(int argc, char* argv[]) {
         throw std::invalid_argument("Слишком мало аргументов: должно быть минимум 2");
         break;
     case 2:
-        port = std::stoi(argv[1]);
+        port = std::stoi(argv[1]);                 // получение порта, на котором слушаются подключения
         break;
     case 3:
-        port = std::stoi(argv[1]);
-        level = parseStringToLoggerLevel(argv[2]);
+        port = std::stoi(argv[1]);                 // получение порта, на котором слушаются подключения
+        level = parseStringToLoggerLevel(argv[2]); // получение уровня логирования по умолчанию
         break;
     }
     return {port, level};
@@ -81,24 +81,25 @@ void test_logger_writing(std::shared_ptr<Logger> &logger, const std::string &msg
 
 void start_testing(std::shared_ptr<Logger> log) {
 
-    unsigned char menu, menu2; 
-    std::string msg;
+    unsigned char menu, menu2; // переменные для сохранения выбора пользователя
+    std::string msg;        
     Levels level;
     do{
-        system("clear");
-        std::cout << "1. Сделать запись" << std::endl;
+        system("clear"); // очистка консоли
+        std::cout << "1. Сделать запись" << std::endl; // меню, представляющее базовый функционал
         std::cout << "2. Изменить уровень логирования по умолчанию" << std::endl;
         std::cout << "3. Выход" << std::endl;
-        std::cin >> menu;
+        std::cin >> menu; // получение ответа от пользователя
         switch(menu){
         case '1': {
             system("clear");
             std::cout << "Ваше сообщение: " << std::endl;
             cinFlush();
-            std::getline(std::cin, msg);
+            std::getline(std::cin, msg); // получение сообщения от пользователя
             std::cout << "Хотите указать уровень логирования? Y/n" << std::endl;
             std::cin >> menu2;
-            if(menu2 != 'n' && menu2 != 'N'){
+            if(menu2 != 'n' && menu2 != 'N'){ // если пользователь не говорит явно нет
+                                              // предлагается выбрать уровень логирования
                 std::cout << "1. DEBUG" << std::endl;
                 std::cout << "2. INFO" << std::endl;
                 std::cout << "3. WARNING" << std::endl;
@@ -113,12 +114,13 @@ void start_testing(std::shared_ptr<Logger> log) {
                     case '5' : level = Levels::FATAL; break;
                 }
             }
-            else level = log->get_level();
-            std::thread handle_data(test_logger_writing, std::ref(log), std::cref(msg), level);
-            handle_data.join();
+            else level = log->get_level(); // иначе выбирается уровень по умолчанию
+            std::thread handle_data(test_logger_writing, std::ref(log), std::cref(msg), level); // запись лога
+            handle_data.join(); 
             break;
         }
         case '2': {
+            // присваивание нового значения уровня логирования по умолчанию
             std::cout << "1. DEBUG" << std::endl;
             std::cout << "2. INFO" << std::endl;
             std::cout << "3. WARNING" << std::endl;
@@ -135,7 +137,7 @@ void start_testing(std::shared_ptr<Logger> log) {
             break;
         }
         }
-    }while(menu != '3');
+    }while(menu != '3'); // меню крутиться пока пользователь не нажмет 3, т.е. "выход"
 
 
 }
