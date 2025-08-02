@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(simple_logger)
+project(testing_server)
 
 set(SOURCES
     reading_main.cpp
@@ -15,4 +15,4 @@ set(HEADERS
     ../libstatistics/statistic.h
 )
 
-add_executable(simple_logger ${SOURCES} ${HEADERS})
+add_executable(testing_server ${SOURCES} ${HEADERS})
