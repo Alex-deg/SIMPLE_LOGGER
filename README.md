@@ -9,49 +9,49 @@
   - socket_client_app и socket_server_app - для тестирования класса SocketLogger
 
 Иерархия классов выглядит следующим образом:
+
 classDiagram
-  namespace liblog {
-    ILogger <|.. Logger : implements
-    Logger <|-- FileLogger
-    Logger <|-- SocketLogger
-    
+    direction BT
     class ILogger {
-      <<interface>>
-      +debug(message: string)
-      +info(message: string)
-      +warning(message: string)
-      +error(message: string)
-      +fatal(message: string)
-      +set_level(level: Levels)
-      +now() string
-      +write_log(message: string)
+        <<interface>>
+        +debug(message: string)
+        +info(message: string)
+        +warning(message: string)
+        +error(message: string)
+        +fatal(message: string)
+        +set_level(level: Levels)
+        +now() string
+        +write_log(message: string)
     }
     
     class Logger {
-      -_level: Levels
-      +debug(message: string)
-      +info(message: string)
-      +warning(message: string)
-      +error(message: string)
-      +fatal(message: string)
-      +set_level(level: Levels)
-      +get_level() Levels
-      +now() string
-      +write_log(message: string)
+        -_level: Levels
+        +debug(message: string)
+        +info(message: string)
+        +warning(message: string)
+        +error(message: string)
+        +fatal(message: string)
+        +set_level(level: Levels)
+        +get_level() Levels
+        +now() string
+        +write_log(message: string)
     }
     
     class FileLogger {
-      -log_file: fstream
-      +write_log(message: string)
+        -log_file: fstream
+        +write_log(message: string)
     }
     
     class SocketLogger {
-      -client_socket: int
-      -_port: int
-      +write_log(message: string)
-      +set_nonblocking(fd: int) int
+        -client_socket: int
+        -_port: int
+        +write_log(message: string)
+        +set_nonblocking(fd: int) int
     }
-  }
+    
+    ILogger <|.. Logger : implements
+    Logger <|-- FileLogger : extends
+    Logger <|-- SocketLogger : extends
 
 
 ## Особенности
