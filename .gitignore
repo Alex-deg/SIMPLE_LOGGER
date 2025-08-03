@@ -1,6 +1,5 @@
 .vscode/
 build/
-images/
 liblogger/build/
 Testing_file_logger/build/
 Testing_socket_logger/client/build/
