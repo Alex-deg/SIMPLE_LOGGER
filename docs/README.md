@@ -22,7 +22,9 @@
 
 Иерархия классов выглядит следующим образом:
 
-![Диаграмма классов](images/class_diagram.png)
+<p align="center">
+  <img src="images/class_diagram.png" alt="Диаграмма классов" width="500"/>
+</p>
 
 ## 2. Особенности
 - Поддержка 5 уровней логирования: DEBUG, INFO, WARNING, ERROR, FATAL
