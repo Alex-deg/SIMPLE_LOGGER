@@ -23,20 +23,20 @@ public:
     ~TCPServer();
     
 private:
-    static const int MAX_EVENTS = 10; // количество сессий одновременно
-    static const int BUF_SIZE = 1024;
+    static const int MAX_EVENTS = 10;                       // количество сессий одновременно
+    static const int BUF_SIZE = 1024;                       // размер буфера
     
-    int port_;
+    int port_;                                              // порт сервера
     int epoll_fd_;
     int server_fd_;
-    std::vector<struct epoll_event> events_{MAX_EVENTS};
+    std::vector<struct epoll_event> events_{MAX_EVENTS};    // массив с событиями
 
-    std::shared_ptr<Stats> stat;
+    std::shared_ptr<Stats> stat;                            // объект для счета статистики
 
-    void createSocket();
-    void setupEpoll();
-    void handleNewConnection();
-    void handleClientData(int fd);
+    void createSocket();                                    // создание сокета
+    void setupEpoll();                                      // натсройка epoll
+    void handleNewConnection();                             // обработка нового подключения
+    void handleClientData(int fd);                          // обрботка данных пользователя
 
     int set_nonblocking(int fd);
 };

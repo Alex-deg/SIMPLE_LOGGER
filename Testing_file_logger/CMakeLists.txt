@@ -1,16 +1,19 @@
-cmake_minimum_required(VERSION 3.10)
-
-project(simple_logger)
-
-set(SOURCES
+# Тестовое приложение для файлового логгера
+add_executable(file_logger_app
     main.cpp
-    ../liblogger/Logger.cpp
-    ../Functions_for_testing/functions.cpp
 )
 
-set(HEADERS
-    ../liblogger/Logger.h
-    ../Functions_for_testing/functions.cpp
+# Заголовочные файлы
+target_include_directories(file_logger_app PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Functions_for_testing
+    ${CMAKE_CURRENT_SOURCE_DIR}/../liblogger
 )
 
-add_executable(simple_logger ${SOURCES} ${HEADERS})
+# Зависимости
+target_link_libraries(file_logger_app
+    functions_for_testing
+    logger
+)
+
+# Копирование скрипта очистки
+file(COPY scripts DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})

@@ -1,16 +1,17 @@
-cmake_minimum_required(VERSION 3.10)
-
-project(testing_client)
-
-set(SOURCES
+# Клиент для отправки логов через сокет
+add_executable(socket_client_app
     sending_main.cpp
-    ../../liblogger/Logger.cpp
-    ../../Functions_for_testing/functions.cpp
 )
 
-set(HEADERS
-    ../../liblogger/Logger.h
-    ../../Functions_for_testing/functions.h
+# Заголовочные файлы
+target_include_directories(socket_client_app PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Functions_for_testing
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../liblogger
 )
 
-add_executable(testing_client ${SOURCES} ${HEADERS})
+# Зависимости - ИЗМЕНЕНО!
+target_link_libraries(socket_client_app
+    functions_for_testing
+    logger
+    ${CMAKE_THREAD_LIBS_INIT}  # Вместо Threads::Threads
+)

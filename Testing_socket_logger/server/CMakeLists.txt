@@ -1,18 +1,18 @@
-cmake_minimum_required(VERSION 3.10)
-
-project(testing_server)
-
-set(SOURCES
+# Сервер для сбора статистики
+add_executable(socket_server_app
     reading_main.cpp
     server.cpp
-    ../../liblogger/Logger.cpp
-    ../libstatistics/statistic.cpp
 )
 
-set(HEADERS
-    server.h
-    ../../liblogger/Logger.h
-    ../libstatistics/statistic.h
+# Заголовочные файлы
+target_include_directories(socket_server_app PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../libstatistics
 )
 
-add_executable(testing_server ${SOURCES} ${HEADERS})
+# Зависимости - ИЗМЕНЕНО!
+target_link_libraries(socket_server_app
+    statistics
+    logger
+    ${CMAKE_THREAD_LIBS_INIT}  # Вместо Threads::Threads
+)
