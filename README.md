@@ -1,6 +1,18 @@
 # Logger Library & Demo Applications
 
-## Описание
+## Содержание
+- 1. Описание
+- 2. Особенности
+- 3. Требования
+- 4. Сборка
+  - 4.1 Сборка проекта
+  - 4.2 Сборка библиотеки
+- 5. Запуск приложений
+  - 5.1 Запуск программы, тестирующей FileLogger
+  - 5.2 Запуск unit тестов, тестирующих FileLogger
+  - 5.3 Запуск программ, тестирующих SocketLogger
+
+## 1. Описание
 Проект состоит из следующих компонентов:
 - Библиотека liblogger для логирования
 - Приложения для тестирования библиотеки:
@@ -10,56 +22,14 @@
 
 Иерархия классов выглядит следующим образом:
 
-classDiagram
-    direction BT
-    class ILogger {
-        <<interface>>
-        +debug(message: string)
-        +info(message: string)
-        +warning(message: string)
-        +error(message: string)
-        +fatal(message: string)
-        +set_level(level: Levels)
-        +now() string
-        +write_log(message: string)
-    }
-    
-    class Logger {
-        -_level: Levels
-        +debug(message: string)
-        +info(message: string)
-        +warning(message: string)
-        +error(message: string)
-        +fatal(message: string)
-        +set_level(level: Levels)
-        +get_level() Levels
-        +now() string
-        +write_log(message: string)
-    }
-    
-    class FileLogger {
-        -log_file: fstream
-        +write_log(message: string)
-    }
-    
-    class SocketLogger {
-        -client_socket: int
-        -_port: int
-        +write_log(message: string)
-        +set_nonblocking(fd: int) int
-    }
-    
-    ILogger <|.. Logger : implements
-    Logger <|-- FileLogger : extends
-    Logger <|-- SocketLogger : extends
+![Диаграмма классов](images/class_diagram.png)
 
-
-## Особенности
+## 2. Особенности
 - Поддержка 5 уровней логирования: DEBUG, INFO, WARNING, ERROR, FATAL
 - Два типа логгеров:
   - **FileLogger**: запись в текстовый файл
   - **SocketLogger**: отправка логов через TCP-сокет
-- Формат логов: `[ВРЕМЯ] [УРОВЕНЬ] Сообщение`
+- Формат логов: `ВРЕМЯ [УРОВЕНЬ] Сообщение`
 - Цветное форматирование для консоли (ANSI-коды)
 - Потокобезопасная обработка сообщений
 - Система сбора статистики для SocketLogger:
@@ -69,13 +39,14 @@ classDiagram
 - Ежедневная очистка файловых логов (скрипт)
 - Юнит-тесты для FileLogger
 
-## Требования
+## 3. Требования
 - Компилятор с поддержкой C++17 (gcc 9+)
 - CMake 3.12+
-- Linux (тестировалось на Ubuntu/Debian)
+- Linux (тестировалось на Ubuntu)
 - Библиотеки: pthread, rt
 
-## Сборка проекта
+## 4. Сборка
+### 4.1 Сборка проекта
 ```bash
 git clone https://github.com/Alex-deg/SIMPLE_LOGGER.git
 cd SIMPLE_LOGGER
@@ -83,5 +54,36 @@ mkdir build && cd build
 cmake ..
 make 
 ```
+ ### 4.2 Сборка библиотеки
+ Сборка динамической библиотеки
+ ```bash
+cd liblogger
+mkdir build
+cd build
+cmake -DBUILD_SHARED_LIBS=ON ..
+make
+```
+Статическая библиотека собирается по умолчанию вместе со сборкой всего проекта
+и находится в build/lib/liblogger.a
 
-## Запуск приложений
+## 5. Запуск приложений
+### 5.1 Запуск программы, тестирующей FileLogger
+```bash
+cd build/bin
+./file_logger_app <путь_к_журналу_с_логами> <уровень_логирования_по_умолчанию>
+```
+### 5.2 Запуск unit тестов, тестирующих FileLogger
+```bash
+cd build/bin
+./logger_tests
+```
+### 5.3 Запуск программ, тестирующих SocketLogger
+В одном терминале запускаем сервер:
+```bash
+cd build/bin
+./socket_server_app <порт>
+```
+В другом терминале запускаем клиента, который отправляет логи в сокет:
+```bash
+cd build/bin
+./socket_client_app <порт> <уровень_логирования_по_умолчанию>
